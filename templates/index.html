@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hava Durumu</title>
+</head>
+<body>
+    <h1>Hava Durumu Öğren</h1>
+
+    <!-- Kullanıcının şehir adı girebilmesi için form -->
+    <form method="POST">
+        <label for="city">Şehir adı girin:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Göster</button>
+    </form>
+
+    {% if city %}
+        <!-- Eğer şehir adı girilmişse ve hava durumu verileri varsa, bunları gösteriyoruz -->
+        <h2>{{ city }} Hava Durumu</h2>
+        <p><strong>Hava Durumu:</strong> {{ hava_durumu }}</p>
+        <p><strong>Sıcaklık:</strong> {{ sıcaklık }}</p>
+        <p><strong>Hissedilen Sıcaklık:</strong> {{ hissedilen }}</p>
+        
+        <!-- Diğer etiket bilgilerini liste olarak gösteriyoruz -->
+        <h3>Diğer Etiketler</h3>
+        <ul>
+            {% for etiket in etiketler %}
+                <li>{{ etiket }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if error_message %}
+        <!-- Eğer bir hata mesajı varsa, kullanıcıya gösteriyoruz -->
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
